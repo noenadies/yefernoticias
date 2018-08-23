@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+
+			.cajaprincipal{
+ 
+				 display: block;
+  background: DodgerBlue;
+			}
+			.clasnoticia{
+
+width: 90%;
+ text-align: justify;
+} 
+				
+			}
+			.classbtlike{
+
+				width: 90%;
+				position: relative;
+				top: 50px;
+			}
+			.classdivparrafo{
+				position:relative;
+				left: 50px; 
+ display: flex;
+width: 90%;
+			}
+		</style>
+	</head>
+	<body><div id="idtodo">{
+		<script src="jquery-3.3.1.min.js"></script>
+	
+
+
+
+
+	<div></div>	
+		
+
+</div> 
+    <div class="button-container">
+  
+    </div>}
+
+<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<script>
+
+  var config = {
+    apiKey: "AIzaSyDHiXmlSh-0U0-34DwUXELfvgEOFMGBl3Q",
+    authDomain: "yefervega2-9fd4e.firebaseapp.com",
+    databaseURL: "https://yefervega2-9fd4e.firebaseio.com",
+    projectId: "yefervega2-9fd4e",
+    storageBucket: "yefervega2-9fd4e.appspot.com",
+    messagingSenderId: "581543374835"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+
+
+
+		<script>
+
+
+
+
+
+var general;
+
+var nodenoticias="noticias";
+
+//traerdef(nodeusersit);
+
+var nodehijo="";
+
+traerdef(nodenoticias);
+
+
+function traerdef(stnode){ 
+  firebase.database().ref().child(String(stnode)).
+  once('value').then(function(snapshot) {
+    var username = (snapshot.val() && snapshot.val().username) 
+    || 'Anonymous';  general=snapshot.val();//generalkey=snapshot.key;
+var generalkey=snapshot.key;
+    console.log("aaaaa  "+generalkey);
+    iteracrea();
+  });
+
+}
+
+
+
+
+
+
+
+
+
+var cambio=0;
+
+
+
+
+var solokeysnoticia=[];
+var  idkeysnoticias=0;
+
+function iteracrea(){
+
+
+var varestructura="<div class="+"cajaprincipal"+"><div class="+"classdivescritopor"
++"> <h3>giovanni esriobio </h3></div><div class="+"classdivparrafo"
++"><p class="+"clasnoticia"+">Medio siglo aguardaron los habitantes de Ciudad Jardín Norte, en Suba, para poder comenzar a ver las obras para la construcción de nuevas redes de alcantarillado sanitario, pluvial y domiciliarias.</p></div><br><button class="
++"classbtlike"+"onclick="+"myFunction()"+">Click me <div class="+
+"classnumlike"+">22</div></button></div>";
+
+
+
+
+
+//, megusta:general[iter].likes
+var mikey= Object.keys(general);
+console.log(mikey);/*
+for(var iter in general){
+solokeysnoticia.push({idk:idkeysnoticias, keyfire:mikey[idkeysnoticias]});
+console.log("mikey "+solokeysnoticia[idkeysnoticias].keyfire);
+idkeysnoticias=idkeysnoticias+1;
+}*/
+
+
+
+	for(var itera in general){
+
+//megusta:general[itera].likes
+
+solokeysnoticia.push({idk:idkeysnoticias, keyfire:mikey[idkeysnoticias],megusta:general[itera].likes});
+console.log("mikey "+solokeysnoticia[idkeysnoticias].keyfire);
+
+
+var varestructura="<div class="+"cajaprincipal"+"><div class="+"classdivescritopor"
++"> <h3>"+general[itera].quien+"esriobio </h3></div><div class="+"classdivparrafo"
++"><p class="+"clasnoticia"+">"+general[itera].tema+"</p></div><br>"+"<div class="+"button-container"+">"+
+        "<button>"+ idkeysnoticias +" noticias Me gusta"+ "</button> <div class="+"classdivlikes"+">"+general[itera].likes+"</div></div></div>"+""   ;
+idkeysnoticias=idkeysnoticias+1;
+//general[itera].likes
+	varformat="<div>ok "+cambio+"</div><br>";
+$("#idtodo").append(varestructura);
+cambio=cambio+1;
+
+
+}
+
+
+}
+
+
+
+function subirlike(snh1,sval){
+  firebase.database().ref().child(String("noticias")).child(
+	String(snh1)).child(String("likes")).set(sval);
+
+}
+
+function subirtext(snh1,sval){
+  firebase.database().ref().child(String("noticias")).child(
+	String(snh1)).child(String("tema")).set(sval);
+
+}
+
+
+
+var valor=0;
+var varlikesi=0;
+	//Click event for button
+$("body").on( "click", ".button-container button", function(){
+	valor=parseInt($(this).text())+0;
+	//alert(" aca va "+valor);
+    for(var idenviar in solokeysnoticia){
+if(solokeysnoticia[idenviar].idk==valor){
+alert(valor);
+ varlikesi=solokeysnoticia[idenviar].megusta+1;
+subirlike(solokeysnoticia[idenviar].keyfire,varlikesi);
+varlikesi=0;
+alert(solokeysnoticia[idenviar].keyfire);
+valor=0;
+//subirtext(solokeysnoticia[idenviar].keyfire,textonoticia);
+//location.reload();
+}
+    }
+   
+}); 
+
+//Adds new button to DOM
+
+var textonoticia="";
+
+		</script>
+	</body>
+</html>
