@@ -33,10 +33,19 @@ width: 90%;
 			}
 
 			.classfot{
-				position:  relative;
-				left: 100px;
-width:100%;
-display: flex;
+position: relative;
+left: 100px;
+
+			}
+
+			#idima{
+
+
+width: 50%;			
+			}
+			#idtodo{
+
+				width: 100%;
 			}
 		</style>
 	</head>
@@ -150,8 +159,7 @@ solokeysnoticia.push({idk:idkeysnoticias, keyfire:mikey[idkeysnoticias],megusta:
 console.log("mikey "+solokeysnoticia[idkeysnoticias].keyfire);
 
 
-var varestructura="<div class="+"cajaprincipal"+">"+"<img src="+String(general[itera].url)
-+"alt="+"Cinque Terre"+ "class="+"classfot"+">"+"  <div class="+"classdivescritopor"
+var varestructura="<div  "+"class="+"classfot"+"><img "+" src="+String(general[itera].url)+"></div>"+"<div class="+"cajaprincipal"+">"+"  <div class="+"classdivescritopor"
 +"> <h3>"+general[itera].quien+"esriobio </h3></div><div class="+"classdivparrafo"
 +"><p class="+"clasnoticia"+">"+general[itera].tema+"</p></div><br>"+"<div class="+"button-container"+">"+
         "<button>"+ idkeysnoticias +" noticias Me gusta"+ "</button> <div class="+"classdivlikes"+">"+general[itera].likes+"</div></div></div>"+""   ;
